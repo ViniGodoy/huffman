@@ -82,12 +82,16 @@ public class Huffman {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
 
+        System.out.println("--------------------------------------------");
+        System.out.println("Huffman coding - Developed by Vinicius Godoy");
+        System.out.println("--------------------------------------------");
+
         while (true) {
-            System.out.println("Entre com o texto a ser codificado.");
-            System.out.println("Digite Huffman para um texto padrão, ou pressione enter sem digitar nada para sair.");
+            System.out.println("Type the text to be encoded");
+            System.out.println("Use Huffman for a default text, or leave blank to stop.");
             String text = in.nextLine().trim();
 
-            if (text.equals("Huffman")) {
+            if (text.equalsIgnoreCase("Huffman")) {
                 text =
                         "In computer science and information theory, a Huffman code is a particular type\n" +
                                 "of optimal prefix code that is commonly used for lossless data compression. The\n" +
@@ -97,7 +101,7 @@ public class Huffman {
                                 "Minimum-Redundancy Codes\".";
             }
 
-            System.out.println("Codificando...");
+            System.out.println();
             Huffman huff = new Huffman();
             String data = huff.encode(text);
 
@@ -108,7 +112,10 @@ public class Huffman {
             System.out.println("Compressed size: " + compressedSize);
             System.out.printf("Compressed is %.2f%% smaller than the original. %n", rate);
             System.out.println();
-            System.out.println("Texto após decodificação:");
+            System.out.println("Encoded data:");
+            System.out.println(data);
+            System.out.println();
+            System.out.println("Decoded text:");
             System.out.println(huff.decode(data));
             System.out.println();
             System.out.println();
