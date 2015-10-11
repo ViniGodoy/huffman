@@ -11,4 +11,4 @@ Finally, if you just want to download an executable .jar file and play around, j
 
 [1]: https://en.wikipedia.org/wiki/Huffman_coding
 [2]: https://en.wikipedia.org/wiki/Canonical_Huffman_code
-[3]: 
+[3]: https://github.com/ViniGodoy/huffman/raw/master/out/artifacts/jar/Huffman.jar
