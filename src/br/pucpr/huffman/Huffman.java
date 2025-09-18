@@ -9,13 +9,13 @@ public class Huffman {
     private Node root;
 
     private char[] getChars(String text) {
-        char[] letters = new char[text.length()];
+        var letters = new char[text.length()];
         text.getChars(0, text.length(), letters, 0);
         return letters;
     }
 
     private PriorityQueue<Node> countFrequencies(char[] letters) {
-        Map<Character, Node> count = new HashMap<>();
+        var count = new HashMap<Character, Node>();
         for (char ch : letters) {
             if (!count.containsKey(ch)) {
                 count.put(ch, new Node(ch));
@@ -29,11 +29,11 @@ public class Huffman {
     private Node createTree(PriorityQueue<Node> nodes) {
         while (true) {
             //1. Take the two lowest frequent nodes
-            Node node1 = nodes.poll();
-            Node node2 = nodes.poll();
+            var node1 = nodes.poll();
+            var node2 = nodes.poll();
 
             //2. Group them
-            Node parent = new Node(node1, node2);
+            var parent = new Node(node1, node2);
 
             //3. If the queue is empty, the group is the root
             if (nodes.isEmpty()) {
@@ -46,17 +46,17 @@ public class Huffman {
     }
 
     private Map<Character, String> createCodeMap() {
-        Map<Character, String> result = new TreeMap<>();
+        var result = new TreeMap<Character, String>();
         root.fillCodeMap(result, "");
         return result;
     }
 
     public String encode(String text) {
-        char[] letters = getChars(text);
+        var letters = getChars(text);
         root = createTree(countFrequencies(letters));
-        Map<Character, String> codemap = createCodeMap();
+        var codemap = createCodeMap();
 
-        StringBuilder data = new StringBuilder();
+        var data = new StringBuilder();
         for (char ch : letters) {
             data.append(codemap.get(ch));
         }
@@ -64,15 +64,11 @@ public class Huffman {
     }
 
     public String decode(String data) {
-        Node current = root;
+        var current = root;
 
-        StringBuilder result = new StringBuilder();
-        for (char ch : getChars(data)) {
-            if (ch == '0') {
-                current = current.getLeft();
-            } else {
-                current = current.getRight();
-            }
+        var result = new StringBuilder();
+        for (var ch : getChars(data)) {
+            current = ch == '0' ? current.getLeft() : current.getRight();
 
             if (current.isLeaf()) {
                 result.append(current.getSymbol());

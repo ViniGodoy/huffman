@@ -3,7 +3,7 @@ package br.pucpr.huffman;
 import java.util.Map;
 
 public class Node implements Comparable<Node> {
-    private char symbol;
+    private final char symbol;
     private int count;
 
     private Node left;
@@ -52,8 +52,7 @@ public class Node implements Comparable<Node> {
 
     @Override
     public String toString() {
-        String ch = symbol == '\n' ? "\\n" : "" + symbol;
-
+        var ch = symbol == '\n' ? "\\n" : "" + symbol;
         return String.format("'%s': %d", ch, getFrequency());
     }
 
